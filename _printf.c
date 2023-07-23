@@ -1,19 +1,26 @@
+/**
+ * This file _printf.c entails the printf format
+ * for this customized printf function
+*/
 #include "main.h"
 void print_buffer(char bbuff[], int *esttt);
 /**
  * _printf - the_print_f funct
- * @format: arg
+ * @format: arg str that is txt and fmrt specifaya
  * Return: the characters
  */
 int _printf(const char *format, ...)
 {
-int y, puttd = 0, puttd_c = 0;
-int f, the_witdth, pprcion, size, esttt = 0;
+int y;
+int puttd = 0, puttd_c = 0;
+int f, the_witdth, pprcion, size; /* keeping track of the char pointed*/
+int esttt = 0;
 va_list list;
-char bbuff[SIZE_OFBUFFER];
+char bbuff[SIZE_OFBUFFER]; /* holding intermideate outputs*/
 if (format == NULL)
 return (-1);
 va_start(list, format);
+/* now loop iterattion starts*/
 for (y = 0; format && format[y] != '\0'; y++)
 {
 if (format[y] != '%')
@@ -21,7 +28,7 @@ if (format[y] != '%')
 bbuff[esttt++] = format[y];
 if (esttt == SIZE_OFBUFFER)
 print_buffer(bbuff, &esttt);
-puttd_c++;
+puttd_c++; /* increment */
 }
 else
 {
@@ -30,7 +37,7 @@ f = _get_flaggs(format, &y);
 the_witdth = _get_wdth(format, &y, list);
 pprcion = getprecision(format, &y, list);
 size = _getsize(format, &y);
-++y;
+++y; /* increment */
 puttd = handle_print(format, &y, list, bbuff,
 f, the_witdth, pprcion, size);
 if (puttd == -1)
@@ -40,7 +47,7 @@ puttd_c += puttd;
 }
 print_buffer(bbuff, &esttt);
 va_end(list);
-return (puttd_c);
+return (puttd_c); /* end processing variable arg */
 }
 /**
  * print_buffer - fction prints bafa co_tent
