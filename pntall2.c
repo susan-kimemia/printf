@@ -12,23 +12,24 @@
 int _pri_ptr(va_list ttyype, char bbuff[],
 int f, int the_witdth, int pprcion, int size)
 {
-char morc = 0, grad = ' ';
+char morc = 0;
+char grad = ' ';
 int est = SIZE_OFBUFFER - 2, _len = 2, grad_start = 1;
-unsigned long namba_addrs;
+unsigned long namba_addrs;/* using unsgned to evade compiler warning */
 char arr[] = "0123456789abcdef";
 void *addrs = va_arg(ttyype, void *);
 UUNUSSED(the_witdth);
 UUNUSSED(size);
-if (addrs == NULL)
+if (addrs == NULL) /* check if adress is empty */
 return (write(1, "(nil)", 5));
-bbuff[SIZE_OFBUFFER - 1] = '\0';
+bbuff[SIZE_OFBUFFER - 1] = '\0';/* if namba is zero store '0' */
 UUNUSSED(pprcion);
 namba_addrs = (unsigned long)addrs;
 while (namba_addrs > 0)
 {
 bbuff[est--] = arr[namba_addrs % 16];
 namba_addrs /= 16;
-_len++;
+_len++;/* itteration */
 }
 if ((f & _FLAG_ZERROO) && !(f & _FLAG_MINUS))
 grad = '0';
@@ -36,13 +37,13 @@ if (f & _FLAG_ADD)
 morc = '+', _len++;
 else if (f & _FLAG_SPACE)
 morc = ' ', _len++;
-est++;
+est++;/* itterate */
 /**
  * return (write(1, &bbuff[m], SIZE_OFBUFFER - m - 1));
  * @grad_start: index
  */
 return (_writePTR(bbuff, est, _len,
-the_witdth, f, grad, morc, grad_start));
+the_witdth, f, grad, morc, grad_start)); /* get a write fctn */
 }
 /**
  * _pri_nonprintable - the nonprintable charact
@@ -57,23 +58,24 @@ the_witdth, f, grad, morc, grad_start));
 int _pri_nonprintable(va_list ttyype, char bbuff[],
 int f, int the_witdth, int pprcion, int size)
 {
-int m = 0, offset = 0;
+int m = 0;
+int offset = 0;
 char *str = va_arg(ttyype, char *);
 UUNUSSED(f);
 UUNUSSED(the_witdth);
 UUNUSSED(pprcion);
 UUNUSSED(size);
-if (str == NULL)
-return (write(1, "(null)", 6));
+if (str == NULL) /* check if string is null */
+return (write(1, "(null)", 6)); /* write fction */
 while (str[m] != '\0')
 {
 if (printable_(str[m]))
 bbuff[m + offset] = str[m];
 else
 offset += hexacode_append(str[m], bbuff, m + offset);
-m++;
+m++; /* iterration */
 }
-bbuff[m + offset] = '\0';
+bbuff[m + offset] = '\0'; /* init m to index bbuff */
 return (write(1, bbuff, m + offset));
 }
 /**
@@ -89,17 +91,18 @@ return (write(1, bbuff, m + offset));
 int _priReverse(va_list ttyype, char bbuff[],
 int f, int the_witdth, int pprcion, int size)
 {
-char *str;
-int m, fc_ount = 0;
+char *str; /* character array */
+int m;
+int fc_ount = 0; /* assigning the var to 0 */
 UUNUSSED(bbuff);
 UUNUSSED(f);
 UUNUSSED(the_witdth);
 UUNUSSED(size);
 str = va_arg(ttyype, char *);
-if (str == NULL)
+if (str == NULL) /* compare str to null */
 {
 UUNUSSED(pprcion);
-str = ")Null(";
+str = ")Null("; /* reversively equating str to null */
 }
 for (m = 0; str[m]; m++)
 ;
@@ -107,7 +110,7 @@ for (m = m - 1; m >= 0; m--)
 {
 char z = str[m];
 write(1, &z, 1);
-fc_ount++;
+fc_ount++; /* iteration */
 }
 return (fc_ount);
 }
@@ -126,7 +129,8 @@ int f, int the_witdth, int pprcion, int size)
 {
 char x;
 char *str;
-unsigned int m, n;
+unsigned int m;
+unsigned int n;
 int fc_ount = 0;
 char ascnd[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 char dscnd[] = "NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm";
@@ -136,7 +140,7 @@ UUNUSSED(f);
 UUNUSSED(the_witdth);
 UUNUSSED(pprcion);
 UUNUSSED(size);
-if (str == NULL)
+if (str == NULL) /* checking if string is null */
 str = "(AHYY)";
 for (m = 0; str[m]; m++)
 {
@@ -146,7 +150,7 @@ if (ascnd[n] == str[m])
 {
 x = dscnd[n];
 write(1, &x, 1);
-fc_ount++;
+fc_ount++; /* iterration */
 break;
 }
 }
@@ -154,8 +158,9 @@ if (!ascnd[n])
 {
 x = str[m];
 write(1, &x, 1);
-fc_ount++;
+fc_ount++; /* iterration */
 }
 }
 return (fc_ount);
 }
+

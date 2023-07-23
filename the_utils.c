@@ -8,24 +8,24 @@ int printable_(char c)
 {
 if (c >= 32 && c < 127)
 return (1);
-return (0);
+return (0); /* return either 1 or 0 */
 }
 /**
  * hexacode_append - it is appending ascci in hexa-decimal
- * @bbuff: buffer
+ * @bbuff: bafa containing stored val
  * @i: start of ppaddinggg
  * @val_ascii: the ascii values
  * Return: three
  */
 int hexacode_append(char val_ascii, char bbuff[], int i)
 {
-char map_to[] = "0123456789ABCDEF";
-if (val_ascii < 0)
+char est[] = "0123456789ABCDEF"; /* Array with ascii val */
+if (val_ascii < 0) /* checking for ascii */
 val_ascii *= -1;
 bbuff[i++] = '\\';
 bbuff[i++] = 'x';
-bbuff[i++] = map_to[val_ascii / 16];
-bbuff[i] = map_to[val_ascii % 16];
+bbuff[i++] = est[val_ascii / 16];
+bbuff[i] = est[val_ascii % 16];
 return (3);
 }
 /**
@@ -37,7 +37,7 @@ int itsAdigit(char c)
 {
 if (c >= '0' && c <= '9')
 return (1);
-return (0);
+return (0); /* either one or zero */
 }
 /**
  * sizeNUMB_convert - convert namba to the required sizze
@@ -47,11 +47,11 @@ return (0);
  */
 long int sizeNUMB_convert(long int namba, int size)
 {
-if (size == LONG_SIZE)
+if (size == LONG_SIZE) /* comparing, size equals to longsize */
 return (namba);
 else if (size == SHORT_SIZE)
 return ((short)namba);
-return ((int)namba);
+return ((int)namba); /* return either short or int */
 }
 /**
  * sizeUNSGND_convert - convrts namba to spec sizeee
@@ -63,8 +63,8 @@ long int sizeUNSGND_convert(unsigned long int namba, int size)
 {
 if (size == LONG_SIZE)
 return (namba);
-else if (size == SHORT_SIZE)
+else if (size == SHORT_SIZE) /* compare size to shortsize */
 return ((unsigned short)namba);
-return ((unsigned int)namba);
+return ((unsigned int)namba); /* return unsgd int or short */
 }
 
