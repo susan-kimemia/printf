@@ -1,7 +1,3 @@
-/**
- * This file _printf.c entails the printf format
- * for this customized printf function
-*/
 #include "main.h"
 void print_buffer(char bbuff[], int *esttt);
 /**
