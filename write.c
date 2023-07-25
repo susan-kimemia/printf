@@ -112,14 +112,13 @@ return (write(1, &bbuff[1], m - 1) + write(1, &bbuff[est], _len));
 else if (!(f & _FLAG_MINUS) && grad == '0')
 {
 if (morc)
-bbuff[--grad_start] = morc;
-/* write function */
+bbuff[--grad_start] = morc;/* write function */
 return (write(1, &bbuff[grad_start], m - grad_start) +
 write(1, &bbuff[est], _len - (1 - grad_start)));
 }
 }
 if (morc)
-bbuff[--est] = morc;
+bbuff[--est] = morc; /* write function */
 return (write(1, &bbuff[est], _len));
 }
 /**
