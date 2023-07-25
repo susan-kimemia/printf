@@ -165,7 +165,7 @@ else
 {
 return (write(1, &bbuff[0], m) + write(1, &bbuff[est], _len));
 }
-}
+} /* write function */
 return (write(1, &bbuff[est], _len));
 }
 /**
@@ -194,11 +194,9 @@ if (f & _FLAG_MINUS && grad == ' ')
 bbuff[--est] = 'x';
 bbuff[--est] = '0';
 if (morc)
-bbuff[--est] = morc;
-/* write function */
+bbuff[--est] = morc;/* write function */
 return (write(1, &bbuff[est], _len) + write(1, &bbuff[3], m - 3));
-}
-/* entering a loop */
+}/* entering a loop */
 else if (!(f & _FLAG_MINUS) && grad == ' ')
 {
 bbuff[--est] = 'x';
@@ -213,8 +211,7 @@ else if (!(f & _FLAG_MINUS) && grad == '0')
 if (morc)
 bbuff[--grad_start] = morc;
 bbuff[1] = '0';
-bbuff[2] = 'x';
-/* write function */
+bbuff[2] = 'x';/* write function */
 return (write(1, &bbuff[grad_start], m - grad_start) +
 write(1, &bbuff[est], _len - (1 - grad_start) - 2));
 }
@@ -222,7 +219,6 @@ write(1, &bbuff[est], _len - (1 - grad_start) - 2));
 bbuff[--est] = 'x';
 bbuff[--est] = '0';
 if (morc)
-bbuff[--est] = morc;
-/* write function */
+bbuff[--est] = morc;/* write function */
 return (write(1, &bbuff[est], SIZE_OFBUFFER - est - 1));
 }
