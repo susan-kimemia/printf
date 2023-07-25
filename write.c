@@ -19,7 +19,7 @@ UUNUSSED(pprcion);
 UUNUSSED(size);
 if (f & _FLAG_ZERROO)
 grad = '0';
-bbuff[m++] = c;
+bbuff[m++] = c; /* assigning bafa index to c */
 bbuff[m] = '\0'; /* bafa index */
 if (the_witdth > 1)
 {
