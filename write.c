@@ -14,7 +14,7 @@ int f, int the_witdth, int pprcion, int size)
 {
 
 int m = 0; /* init m to zero */
-char grad = ' ';
+char grad = ' '; /* grad character creates space */
 UUNUSSED(pprcion);
 UUNUSSED(size);
 if (f & _FLAG_ZERROO)
